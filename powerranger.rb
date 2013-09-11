@@ -12,6 +12,13 @@ module FightMoves
 			puts "#{@name} missed"
 		end
 	end
+
+	def host_fight_scene(person1, person2, ninja1, ninja2, ranger1, ranger2)
+		ninja2.punch(ranger1)
+		ranger1.use_megazord(person1)
+		person1.run
+		ninja1.cause_mayhem(person2)
+	end
 end
 
 ##### CLASSES #####
@@ -23,7 +30,6 @@ class Person
 		@name = name
 		@caffination = 36.0
 	end
-
 
 	def run
 		@caffination = @caffination/3.0
@@ -89,17 +95,21 @@ class EvilNinja < Person
 end
 
 
-
-
-
-
-#####################--- tests
+#####################--- tests - ################
 alex = PowerRanger.new("alex", "red")
+yellow = PowerRanger.new("yellow", "yellow")
 molly = Person.new("molly")
+mary = Person.new("mary")
 pirate = EvilNinja.new("pirate")
+ninja = EvilNinja.new("ninja")
 
-alex.punch(pirate)
-pirate.punch(alex)
+alex.host_fight_scene(molly, mary, pirate, ninja, alex, yellow)
+puts ""
+puts "new fight"
+puts ""
+alex.host_fight_scene(molly, mary, pirate, ninja, alex, yellow)
+
+
 
 # molly.scream
 
