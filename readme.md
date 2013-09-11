@@ -1,3 +1,6 @@
+
+
+
 # Person Class
 1. [done] Create the class Person
 
@@ -19,4 +22,14 @@
 
 * [done]Create a class method called use_megazord which does the same thing as punch but with a strength of 5000!
 
+# Evil Ninja
 
+* [Done] Create a class EvilNinja which extends Person
+
+*[done] An EvilNinja has attributes: strength and evilness
+
+* An EvilNinja can punch and cause_mayhem
+
+* Punch works the same way as for PowerRangers
+
+* [done] Cause_mayhem takes a person as an argument and drains their caffeine level to 0. Terrifying

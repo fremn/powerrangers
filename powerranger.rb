@@ -1,3 +1,21 @@
+############# MODELS ###########
+module FightMoves
+	def punch(person_to_punch)
+		puts "#{@name} has #{@caffination} caffination"
+		if @strength > 5
+			person_to_punch.scream
+			person_to_punch.run
+			person_to_punch.scream
+			@caffination = @caffination - rand(3.0...9.0)
+			puts "#{@name} has #{@caffination} caffine."
+		else
+			puts "#{@name} missed"
+		end
+	end
+end
+
+##### CLASSES #####
+
 class Person
 	attr_accessor :name, :caffination
 	
@@ -19,30 +37,19 @@ class Person
 		@caffination += 3.0
 	end
 
-	def hit
-		@caffination
+	def dies
+		@caffination = 0
 	end
+
 end
 
 #_______________end of Person Class_____________
 
-molly = Person.new("molly")
-
-
-# molly.scream
-
-# molly.run
-# molly.run
-# molly.run
-# molly.scream
-# molly.run
-# molly.drink_coffee
-# molly.scream
-
-
 class PowerRanger < Person
 	attr_accessor :strength, :color
-	
+
+	include FightMoves
+
 	def initialize(name, color)
 		@name = name
 		@caffination = 36.0
@@ -55,30 +62,57 @@ class PowerRanger < Person
 		puts @strength
 	end
 
-	def punch(person_to_punch)
-		puts "you have #{@caffination}"
-		if @strength > 5
-			person_to_punch.scream
-			person_to_punch.run
-			person_to_punch.scream
-			@caffination = @caffination - rand(3.0...9.0)
-		else
-			puts "you missed"
-		end
-	end
-	
 	def use_megazord(person_to_punch)
 		punch(person_to_punch)
 		puts "#{@name} used megazord!!!"
-		person_to_punch.run * 5000
+		person_to_punch.run
 		person_to_punch.scream
 	end
 end
 
-alex = PowerRanger.new("alex", "red")
+########## NINJA ###############
 
+class EvilNinja < Person
+	include FightMoves
+	attr_accessor :evilness 
+	def initialize(name)
+		@name = name
+		@evilness = rand(3...21)
+		@strength = name.length * rand(1...9)
+		@caffination = 46.0
+	end
 
-alex.use_megazord(molly)
+	def cause_mayhem(to_which_person)
+		to_which_person.dies 
+	end 
 
-class EvilNinja
 end
+
+
+
+
+
+
+#####################--- tests
+alex = PowerRanger.new("alex", "red")
+molly = Person.new("molly")
+pirate = EvilNinja.new("pirate")
+
+alex.punch(pirate)
+pirate.punch(alex)
+
+# molly.scream
+
+# molly.run
+# molly.run
+# molly.run
+# molly.scream
+# molly.run
+# molly.drink_coffee
+# molly.scream
+
+#alex.use_megazord(molly)
+
+
+
+
